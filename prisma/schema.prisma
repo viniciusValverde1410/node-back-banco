@@ -14,6 +14,11 @@ datasource db {
 }
 
 model Task {
-  id        Int @id @default(autoincrement())
+id        Int @id @default(autoincrement())
 descricao String
+concluida Boolean @default(false)
+
+criadaEm DateTime @default(now())
+
+@@map("tasks")
 }

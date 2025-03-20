@@ -36,8 +36,8 @@ class TarefaController {
         descricao
       );
 
-      if (!tarefaAtualizada){
-        return res.status(404).json({erro: "Tarefa não encontrada!"})
+      if (!tarefaAtualizada) {
+        return res.status(404).json({ erro: "Tarefa não encontrada!" })
       }
 
       res.json(tarefaAtualizada)
@@ -49,21 +49,21 @@ class TarefaController {
 
 
   delete = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
 
     try {
       const sucesso = await tarefaModel.delete(Number(id));
 
-      
-    if (!sucesso) {
-      return res.status(404).json({ error: "Tarefa não encontrada" });
-    }
 
-    res.status(200).send("Tarefa deletado com sucesso!");
+      if (!sucesso) {
+        return res.status(404).json({ error: "Tarefa não encontrada" });
+      }
+
+      res.status(200).send("Tarefa deletado com sucesso!");
 
     } catch (error) {
       console.error(error)
-      res.status(500).json({error: "Não foi possível deletar a tarefa"})
+      res.status(500).json({ error: "Não foi possível deletar a tarefa" })
     }
   };
 }
